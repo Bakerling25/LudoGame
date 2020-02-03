@@ -114,6 +114,11 @@ namespace ThomasLudoGame
                             piece.pos = newPos;
                             Console.WriteLine("Brik nr " + piece.PieceNumber + " er rykket frem til felt " + newPos);
                             Console.WriteLine("------------------------------------------------------------------------");
+                            if (piece.pos > 57)
+                            {
+                                Console.WriteLine("Brik nr " + piece.PieceNumber + " er kommet hjem ");
+                                Player1.Pieces.RemoveAt(piece.PieceNumber);
+                            }
                         }
                     }
                 }
@@ -128,10 +133,16 @@ namespace ThomasLudoGame
 
                         if (pieceNum == piece.PieceNumber)
                         {
+                            
                             int newPos = piece.pos + diceNum;
                             piece.pos = newPos;
                             Console.WriteLine("Brik nr " + piece.PieceNumber + " er rykket frem til felt " + newPos);
                             Console.WriteLine("------------------------------------------------------------------------");
+                            if (piece.pos > 57)
+                            {
+                                Console.WriteLine("Brik nr " + piece.PieceNumber + " er kommet hjem ");
+                                Player2.Pieces.RemoveAt(piece.PieceNumber);
+                            }
                         }
                     }
                 }
@@ -142,11 +153,10 @@ namespace ThomasLudoGame
         }
         public bool GameFinished()
         {
-            if (counter == 100)
+            if(Player1.Pieces.Count <= 0 || Player2.Pieces.Count <= 0)
             {
                 return true;
             }
-            counter++;
             return false;
         }
 
