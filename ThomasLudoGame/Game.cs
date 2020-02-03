@@ -80,15 +80,15 @@ namespace ThomasLudoGame
             }
             return playerPiecesAll;
         }
-        public static void GetString()
-        {
-            foreach (Piece piece in player1Pieces)
-            {
-                Console.WriteLine(piece.color);
-                Console.WriteLine(piece.PieceNumber);
-            }
+        //public static void GetString()
+        //{
+        //    foreach (Piece piece in player1Pieces)
+        //    {
+        //        Console.WriteLine(piece.color);
+        //        Console.WriteLine(piece.PieceNumber);
+        //    }
             
 
-        }
+        //}
     }
 }
