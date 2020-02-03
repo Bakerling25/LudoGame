@@ -14,7 +14,10 @@ namespace ThomasLudoGame
                 string player1 = Console.ReadLine();
                 string player2 = Console.ReadLine();
                 Game game = new Game(player1, player2);
-                game.GetString();
+                while (game.GameFinished() == false)
+                {
+                    game.Play();
+                }
             }
             else if (numberOfPlayers == 3)
             {
@@ -23,6 +26,10 @@ namespace ThomasLudoGame
                 string player2 = Console.ReadLine();
                 string player3 = Console.ReadLine();
                 Game game = new Game(player1, player2, player3);
+                while (!game.GameFinished())
+                {
+                    game.Play();
+                }
             }
             else if (numberOfPlayers == 4)
             {
@@ -32,12 +39,18 @@ namespace ThomasLudoGame
                 string player3 = Console.ReadLine();
                 string player4 = Console.ReadLine();
                 Game game = new Game(player1, player2, player3, player4);
+                while (!game.GameFinished())
+                {
+                    game.Play();
+                }
+
             }
             else
             {
                 Console.WriteLine("Tallet skal være immelem 2 og 4");
                 
             }
+            
             
             Console.ReadLine();
         }

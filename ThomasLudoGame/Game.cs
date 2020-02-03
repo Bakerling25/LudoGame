@@ -7,7 +7,6 @@ namespace ThomasLudoGame
     class Game
     {
         private int counter;
-        private bool isGameFinished = false;
         private List<Piece> playerPiecesAll = PieceCreator.CreatePiece();
         private List<Piece> player1Pieces = new List<Piece>();
         private List<Piece> player2Pieces = new List<Piece>();
@@ -23,6 +22,7 @@ namespace ThomasLudoGame
             
             Player1 = new Player(player1Name,Player1Pieces());
             Player2 = new Player(player2Name,Player2Pieces());
+            
         }
         public Game(string player1Name, string player2Name,string player3Name)
         {
@@ -30,6 +30,7 @@ namespace ThomasLudoGame
             Player1 = new Player(player1Name, Player1Pieces());
             Player2 = new Player(player2Name, Player2Pieces());
             Player3 = new Player(player3Name, Player3Pieces());
+            
         }
         public Game(string player1Name, string player2Name, string player3Name, string player4Name)
         {
@@ -38,11 +39,7 @@ namespace ThomasLudoGame
             Player2 = new Player(player2Name, Player2Pieces());
             Player3 = new Player(player3Name, Player3Pieces());
             Player4 = new Player(player4Name, Player4Pieces());
-        }
-
-        public bool GameFinished()
-        {
-            return isGameFinished;
+            
         }
         public List<Piece> Player1Pieces()
         {
@@ -51,7 +48,7 @@ namespace ThomasLudoGame
             {
                 player1Pieces.Add(playerPiecesAll[i]);
             }
-            return playerPiecesAll;
+            return player1Pieces;
         }
         public List<Piece> Player2Pieces()
         {
@@ -60,7 +57,7 @@ namespace ThomasLudoGame
             {
                 player2Pieces.Add(playerPiecesAll[i]);
             }
-            return playerPiecesAll;
+            return player2Pieces;
         }
         public List<Piece> Player3Pieces()
         {
@@ -69,7 +66,7 @@ namespace ThomasLudoGame
             {
                 player3Pieces.Add(playerPiecesAll[i]);
             }
-            return playerPiecesAll;
+            return player3Pieces;
         }
         public List<Piece> Player4Pieces()
         {
@@ -77,7 +74,7 @@ namespace ThomasLudoGame
             {
                 player4Pieces.Add(playerPiecesAll[i]);
             }
-            return playerPiecesAll;
+            return player4Pieces;
         }
         public void GetString()
         {
@@ -96,6 +93,62 @@ namespace ThomasLudoGame
 
 
         }
-        
+        public void Play()
+        {
+            for (int i = 1; i <= 2; i++)
+            {
+                Dice dice = new Dice();
+                int diceNum = dice.ThrowDice();
+                if (i == 1)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine(Player1.GetName() + " Har Slået: " + diceNum);
+                    Console.WriteLine("Hvilken Brik vil du rykke med? ");
+                    int pieceNum = int.Parse(Console.ReadLine());
+                    foreach (Piece piece in Player1.Pieces)
+                    {
+
+                        if (pieceNum == piece.PieceNumber)
+                        {
+                            int newPos = piece.pos + diceNum;
+                            piece.pos = newPos;
+                            Console.WriteLine("Brik nr " + piece.PieceNumber + " er rykket frem til felt " + newPos);
+                            Console.WriteLine("------------------------------------------------------------------------");
+                        }
+                    }
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine(Player2.GetName() + " Har Slået: " + diceNum);
+                    Console.WriteLine("Hvilken Brik vil du rykke med? ");
+                    int pieceNum = int.Parse(Console.ReadLine());
+                    foreach (Piece piece in Player2.Pieces)
+                    {
+
+                        if (pieceNum == piece.PieceNumber)
+                        {
+                            int newPos = piece.pos + diceNum;
+                            piece.pos = newPos;
+                            Console.WriteLine("Brik nr " + piece.PieceNumber + " er rykket frem til felt " + newPos);
+                            Console.WriteLine("------------------------------------------------------------------------");
+                        }
+                    }
+                }
+                
+            }
+            
+           
+        }
+        public bool GameFinished()
+        {
+            if (counter == 100)
+            {
+                return true;
+            }
+            counter++;
+            return false;
+        }
+
     }
 }

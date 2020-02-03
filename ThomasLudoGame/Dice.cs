@@ -4,10 +4,10 @@ using System.Text;
 
 namespace ThomasLudoGame
 {
-    class DiceThrown
+    class Dice
     {
-        private int diceNum;
-        public int DiceNum(int diceNum)
+        private static int diceNum;
+        public int ThrowDice()
         {
             Random random = new Random();
             diceNum = random.Next(1, 7);
