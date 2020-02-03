@@ -76,77 +76,16 @@ namespace ThomasLudoGame
             }
             return player4Pieces;
         }
-        public void GetString()
-        {
-            foreach (Piece piece in player1Pieces)
-            {
-                Console.WriteLine(Player1.GetName());
-                Console.WriteLine(piece.color);
-                Console.WriteLine(piece.PieceNumber);
-            }
-            foreach (Piece piece1 in player2Pieces)
-            {
-                Console.WriteLine(piece1.color);
-                Console.WriteLine(piece1.PieceNumber);
-            }
-
-
-
-        }
+       
         public void Play()
         {
             for (int i = 1; i <= 2; i++)
             {
-                Dice dice = new Dice();
-                int diceNum = dice.ThrowDice();
                 if (i == 1)
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine(Player1.GetName() + " Har Slået: " + diceNum);
-                    Console.WriteLine("Hvilken Brik vil du rykke med? ");
-                    int pieceNum = int.Parse(Console.ReadLine());
-                    foreach (Piece piece in Player1.Pieces)
-                    {
-
-                        if (pieceNum == piece.PieceNumber)
-                        {
-                            int newPos = piece.pos + diceNum;
-                            piece.pos = newPos;
-                            Console.WriteLine("Brik nr " + piece.PieceNumber + " er rykket frem til felt " + newPos);
-                            Console.WriteLine("------------------------------------------------------------------------");
-                            if (piece.pos > 57)
-                            {
-                                Console.WriteLine("Brik nr " + piece.PieceNumber + " er kommet hjem ");
-                                Player1.Pieces.RemoveAt(piece.PieceNumber);
-                            }
-                        }
-                    }
+                    Player1Turn();
                 }
-                else
-                {
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.WriteLine(Player2.GetName() + " Har Slået: " + diceNum);
-                    Console.WriteLine("Hvilken Brik vil du rykke med? ");
-                    int pieceNum = int.Parse(Console.ReadLine());
-                    foreach (Piece piece in Player2.Pieces)
-                    {
-
-                        if (pieceNum == piece.PieceNumber)
-                        {
-                            
-                            int newPos = piece.pos + diceNum;
-                            piece.pos = newPos;
-                            Console.WriteLine("Brik nr " + piece.PieceNumber + " er rykket frem til felt " + newPos);
-                            Console.WriteLine("------------------------------------------------------------------------");
-                            if (piece.pos > 57)
-                            {
-                                Console.WriteLine("Brik nr " + piece.PieceNumber + " er kommet hjem ");
-                                Player2.Pieces.RemoveAt(piece.PieceNumber);
-                            }
-                        }
-                    }
-                }
-                
+                Player2Turn();
             }
             
            
@@ -158,6 +97,60 @@ namespace ThomasLudoGame
                 return true;
             }
             return false;
+        }
+        public void Player1Turn() 
+        {
+            Dice dice = new Dice();
+            int diceNum = dice.ThrowDice();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(Player1.GetName() + " Har Slået: " + diceNum);
+            Console.WriteLine("Hvilken Brik vil du rykke med? ");
+            int pieceNum = int.Parse(Console.ReadLine());
+            foreach (Piece piece in Player1.Pieces)
+            {
+
+                if (pieceNum == piece.PieceNumber)
+                {
+                    int newPos = piece.pos + diceNum;
+                    piece.pos = newPos;
+                    Console.WriteLine("Brik nr " + piece.PieceNumber + " er rykket frem til felt " + newPos);
+                    Console.WriteLine("------------------------------------------------------------------------");
+                    if (piece.pos > 57)
+                    {
+                        Console.WriteLine("Brik nr " + piece.PieceNumber + " er kommet hjem ");
+                        Player1.Pieces.RemoveAt(piece.PieceNumber);
+                    }
+                }
+            }
+
+
+        }
+        public void Player2Turn()
+        {
+            Dice dice = new Dice();
+            int diceNum = dice.ThrowDice();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine(Player2.GetName() + " Har Slået: " + diceNum);
+            Console.WriteLine("Hvilken Brik vil du rykke med? ");
+            int pieceNum = int.Parse(Console.ReadLine());
+            foreach (Piece piece in Player2.Pieces)
+            {
+
+                if (pieceNum == piece.PieceNumber)
+                {
+
+                    int newPos = piece.pos + diceNum;
+                    piece.pos = newPos;
+                    Console.WriteLine("Brik nr " + piece.PieceNumber + " er rykket frem til felt " + newPos);
+                    Console.WriteLine("------------------------------------------------------------------------");
+                    if (piece.pos > 57)
+                    {
+                        Console.WriteLine("Brik nr " + piece.PieceNumber + " er kommet hjem ");
+                        Player2.Pieces.RemoveAt(piece.PieceNumber);
+                    }
+                }
+            }
+
         }
 
     }
