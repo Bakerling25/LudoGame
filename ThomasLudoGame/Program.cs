@@ -6,6 +6,7 @@ namespace ThomasLudoGame
     {
         static void Main(string[] args)
         {
+            Game game = new Game("Thomas", "Jonas");
             
         }
     }
