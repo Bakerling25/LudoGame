@@ -8,12 +8,12 @@ namespace ThomasLudoGame
     {
         private int counter;
         private bool isGameFinished = false;
-        private static List<Piece> playerPiecesAll = PieceCreator.CreatePiece();
-        private static List<Piece> player1Pieces = new List<Piece>();
-        private static List<Piece> player2Pieces = new List<Piece>();
-        private static List<Piece> player3Pieces = new List<Piece>();
-        private static List<Piece> player4Pieces = new List<Piece>();
-        private Player Player1;
+        private List<Piece> playerPiecesAll = PieceCreator.CreatePiece();
+        private List<Piece> player1Pieces = new List<Piece>();
+        private List<Piece> player2Pieces = new List<Piece>();
+        private List<Piece> player3Pieces = new List<Piece>();
+        private List<Piece> player4Pieces = new List<Piece>();
+        public Player Player1;
         private Player Player2;
         private Player Player3;
         private Player Player4;
@@ -44,7 +44,7 @@ namespace ThomasLudoGame
         {
             return isGameFinished;
         }
-        public static List<Piece> Player1Pieces()
+        public List<Piece> Player1Pieces()
         {
             
             for (int i = 0; i < 4; i++)
@@ -53,42 +53,49 @@ namespace ThomasLudoGame
             }
             return playerPiecesAll;
         }
-        public static List<Piece> Player2Pieces()
+        public List<Piece> Player2Pieces()
         {
-            List<Piece> player2Pieces = new List<Piece>();
-            for (int i = 0; i < 4; i++)
+            
+            for (int i = 4; i < 8; i++)
             {
                 player2Pieces.Add(playerPiecesAll[i]);
             }
             return playerPiecesAll;
         }
-        public static List<Piece> Player3Pieces()
+        public List<Piece> Player3Pieces()
         {
-            List<Piece> player3Pieces = new List<Piece>();
-            for (int i = 0; i < 4; i++)
+            
+            for (int i = 8; i < 12; i++)
             {
                 player3Pieces.Add(playerPiecesAll[i]);
             }
             return playerPiecesAll;
         }
-        public static List<Piece> Player4Pieces()
+        public List<Piece> Player4Pieces()
         {
-            List<Piece> player4Pieces = new List<Piece>();
-            for (int i = 0; i < 4; i++)
+            for (int i = 12; i < 16; i++)
             {
                 player4Pieces.Add(playerPiecesAll[i]);
             }
             return playerPiecesAll;
         }
-        //public static void GetString()
-        //{
-        //    foreach (Piece piece in player1Pieces)
-        //    {
-        //        Console.WriteLine(piece.color);
-        //        Console.WriteLine(piece.PieceNumber);
-        //    }
-            
+        public void GetString()
+        {
+            foreach (Piece piece in player1Pieces)
+            {
+                Console.WriteLine(Player1.GetName());
+                Console.WriteLine(piece.color);
+                Console.WriteLine(piece.PieceNumber);
+            }
+            foreach (Piece piece1 in player2Pieces)
+            {
+                Console.WriteLine(piece1.color);
+                Console.WriteLine(piece1.PieceNumber);
+            }
 
-        //}
+
+
+        }
+        
     }
 }

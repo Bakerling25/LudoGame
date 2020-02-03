@@ -15,7 +15,10 @@ namespace ThomasLudoGame
             Name = name;
             Pieces = pieces;
         }
-        
+        public string GetName()
+        {
+            return Name;
+        }
 
     }
 }
