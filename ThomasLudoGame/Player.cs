@@ -8,9 +8,9 @@ namespace ThomasLudoGame
     {
         
         private string Name { get; set; }
-        public Queue<Piece> Pieces { get; set; }
+        public List<Piece> Pieces { get; set; }
         
-        public Player(string name,Queue<Piece> pieces)
+        public Player(string name,List<Piece> pieces)
         {
             Name = name;
             Pieces = pieces;

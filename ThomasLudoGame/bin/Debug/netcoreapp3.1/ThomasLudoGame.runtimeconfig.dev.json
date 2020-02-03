@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\xycad\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\xycad\\.nuget\\packages"
+    ]
+  }
+}
