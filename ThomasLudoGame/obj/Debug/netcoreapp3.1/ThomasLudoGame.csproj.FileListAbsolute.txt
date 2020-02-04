@@ -9,3 +9,14 @@ C:\Users\xycad\source\repos\LudoGame\ThomasLudoGame\obj\Debug\netcoreapp3.1\Thom
 C:\Users\xycad\source\repos\LudoGame\ThomasLudoGame\obj\Debug\netcoreapp3.1\ThomasLudoGame.AssemblyInfo.cs
 C:\Users\xycad\source\repos\LudoGame\ThomasLudoGame\obj\Debug\netcoreapp3.1\ThomasLudoGame.dll
 C:\Users\xycad\source\repos\LudoGame\ThomasLudoGame\obj\Debug\netcoreapp3.1\ThomasLudoGame.pdb
+C:\Users\HFGF\source\repos\ThomasLudoGame\ThomasLudoGame\bin\Debug\netcoreapp3.1\ThomasLudoGame.exe
+C:\Users\HFGF\source\repos\ThomasLudoGame\ThomasLudoGame\bin\Debug\netcoreapp3.1\ThomasLudoGame.deps.json
+C:\Users\HFGF\source\repos\ThomasLudoGame\ThomasLudoGame\bin\Debug\netcoreapp3.1\ThomasLudoGame.runtimeconfig.json
+C:\Users\HFGF\source\repos\ThomasLudoGame\ThomasLudoGame\bin\Debug\netcoreapp3.1\ThomasLudoGame.runtimeconfig.dev.json
+C:\Users\HFGF\source\repos\ThomasLudoGame\ThomasLudoGame\bin\Debug\netcoreapp3.1\ThomasLudoGame.dll
+C:\Users\HFGF\source\repos\ThomasLudoGame\ThomasLudoGame\bin\Debug\netcoreapp3.1\ThomasLudoGame.pdb
+C:\Users\HFGF\source\repos\ThomasLudoGame\ThomasLudoGame\obj\Debug\netcoreapp3.1\ThomasLudoGame.csprojAssemblyReference.cache
+C:\Users\HFGF\source\repos\ThomasLudoGame\ThomasLudoGame\obj\Debug\netcoreapp3.1\ThomasLudoGame.AssemblyInfoInputs.cache
+C:\Users\HFGF\source\repos\ThomasLudoGame\ThomasLudoGame\obj\Debug\netcoreapp3.1\ThomasLudoGame.AssemblyInfo.cs
+C:\Users\HFGF\source\repos\ThomasLudoGame\ThomasLudoGame\obj\Debug\netcoreapp3.1\ThomasLudoGame.dll
+C:\Users\HFGF\source\repos\ThomasLudoGame\ThomasLudoGame\obj\Debug\netcoreapp3.1\ThomasLudoGame.pdb

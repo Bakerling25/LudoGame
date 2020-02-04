@@ -92,7 +92,7 @@ namespace ThomasLudoGame
         }
         public bool GameFinished()
         {
-            if(Player1.Pieces.Count <= 0 || Player2.Pieces.Count <= 0)
+            if(Player1.Pieces.Count == 0 || Player2.Pieces.Count == 0)
             {
                 return true;
             }
@@ -152,6 +152,10 @@ namespace ThomasLudoGame
             }
 
         }
+        //public bool IsAllowedToMove()
+        //{
+
+        //}
 
     }
 }
