@@ -16,7 +16,7 @@ namespace ThomasLudoGame
                 Game game = new Game(player1, player2);
                 while (game.GameFinished() == false)
                 {
-                    game.Play();
+                    game.Play(numberOfPlayers);
                 }
             }
             else if (numberOfPlayers == 3)
@@ -28,7 +28,7 @@ namespace ThomasLudoGame
                 Game game = new Game(player1, player2, player3);
                 while (!game.GameFinished())
                 {
-                    game.Play();
+                    game.Play(numberOfPlayers);
                 }
             }
             else if (numberOfPlayers == 4)
@@ -41,7 +41,7 @@ namespace ThomasLudoGame
                 Game game = new Game(player1, player2, player3, player4);
                 while (!game.GameFinished())
                 {
-                    game.Play();
+                    game.Play(numberOfPlayers);
                 }
 
             }

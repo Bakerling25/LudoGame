@@ -7,12 +7,17 @@ namespace ThomasLudoGame
     class Game
     {
         private int counter;
+        private bool hasPlayerOnePieceOnBoard = false;
+        private int player1Start = 0;
+        private int player2Start = 0;
+        //private bool hasPlayer1ThrownThreeSixes = false;
+        //private bool hasPlayer2ThrownThreeSixes = false;
         private List<Piece> playerPiecesAll = PieceCreator.CreatePiece();
         private List<Piece> player1Pieces = new List<Piece>();
         private List<Piece> player2Pieces = new List<Piece>();
         private List<Piece> player3Pieces = new List<Piece>();
         private List<Piece> player4Pieces = new List<Piece>();
-        public Player Player1;
+        private Player Player1;
         private Player Player2;
         private Player Player3;
         private Player Player4;
@@ -20,25 +25,25 @@ namespace ThomasLudoGame
         public Game(string player1Name,string player2Name)
         {
             
-            Player1 = new Player(player1Name,Player1Pieces());
-            Player2 = new Player(player2Name,Player2Pieces());
+            Player1 = new Player(player1Name,Player1Pieces(),hasPlayerOnePieceOnBoard);
+            Player2 = new Player(player2Name,Player2Pieces(),hasPlayerOnePieceOnBoard);
             
         }
         public Game(string player1Name, string player2Name,string player3Name)
         {
             
-            Player1 = new Player(player1Name, Player1Pieces());
-            Player2 = new Player(player2Name, Player2Pieces());
-            Player3 = new Player(player3Name, Player3Pieces());
+            Player1 = new Player(player1Name, Player1Pieces(),hasPlayerOnePieceOnBoard);
+            Player2 = new Player(player2Name, Player2Pieces(),hasPlayerOnePieceOnBoard);
+            Player3 = new Player(player3Name, Player3Pieces(),hasPlayerOnePieceOnBoard);
             
         }
         public Game(string player1Name, string player2Name, string player3Name, string player4Name)
         {
 
-            Player1 = new Player(player1Name, Player1Pieces());
-            Player2 = new Player(player2Name, Player2Pieces());
-            Player3 = new Player(player3Name, Player3Pieces());
-            Player4 = new Player(player4Name, Player4Pieces());
+            Player1 = new Player(player1Name, Player1Pieces(),hasPlayerOnePieceOnBoard);
+            Player2 = new Player(player2Name, Player2Pieces(),hasPlayerOnePieceOnBoard);
+            Player3 = new Player(player3Name, Player3Pieces(),hasPlayerOnePieceOnBoard);
+            Player4 = new Player(player4Name, Player4Pieces(),hasPlayerOnePieceOnBoard);
             
         }
         public List<Piece> Player1Pieces()
@@ -77,15 +82,51 @@ namespace ThomasLudoGame
             return player4Pieces;
         }
        
-        public void Play()
+        public void Play(int numberOfPlayers)
         {
-            for (int i = 1; i <= 2; i++)
+
+            for (int i = 1; i <= numberOfPlayers; i++)
             {
+                Dice dice = new Dice();
+                
                 if (i == 1)
                 {
-                    Player1Turn();
+                    if (Player1.HasPlayerOnePieceOnBoard == false)
+                    {
+                        for (int k = 1; k < 4; k++)
+                        {
+                            player1Start = dice.ThrowDice();
+                            Console.WriteLine(Player1.GetName() + " har slået " + player1Start + " i " + k + " forsøg");
+                            if (player1Start == 6)
+                            {
+                                IsPlayer1AllowedToMove();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Player1Turn();
+                    }
                 }
-                Player2Turn();
+                else
+                {
+                    if (Player2.HasPlayerOnePieceOnBoard == false)
+                    {
+                        for (int k = 1; k < 4; k++)
+                        {
+                            player2Start = dice.ThrowDice();
+                            Console.WriteLine(Player2.GetName() + " har slået " + player2Start + " i " + k + " forsøg");
+                            if (player2Start == 6)
+                            {
+                                IsPlayer2AllowedToMove();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Player2Turn();
+                    }
+                }
             }
             
            
@@ -121,6 +162,7 @@ namespace ThomasLudoGame
                         Player1.Pieces.RemoveAt(piece.PieceNumber);
                     }
                 }
+                
             }
 
 
@@ -149,12 +191,65 @@ namespace ThomasLudoGame
                         Player2.Pieces.RemoveAt(piece.PieceNumber);
                     }
                 }
+                
             }
 
         }
-        //public bool IsAllowedToMove()
-        //{
+        public void IsPlayer1AllowedToMove()
+        {
+            int counter = 0;
+            foreach (Piece piece in Player1.Pieces)
+            {
+                if (piece.pos == 0)
+                {
+                    counter++;
+                    if (counter == 4)
+                    {
+                        Player1.HasPlayerOnePieceOnBoard = false;
+                    }
+                    
+                }
+                
+            }
+            Player1.HasPlayerOnePieceOnBoard = true;
+            
+        }
+        public void IsPlayer2AllowedToMove()
+        {
+            int counter = 0;
+            foreach (Piece piece in Player2.Pieces)
+            {
+                if (piece.pos == 0)
+                {
+                    counter++;
+                    if (counter == 4)
+                    {
+                        Player2.HasPlayerOnePieceOnBoard = false;
+                    }
+                    
+                }
 
+            }
+            Player2.HasPlayerOnePieceOnBoard = true;
+            
+        }
+        //public int ThrowThreeSixes()
+        //{
+        //    int diceNum;
+        //    Dice dice = new Dice();
+        //    for (int i = 0; i < 3; i++)
+        //    {
+        //        diceNum = dice.ThrowDice();
+        //        Console.WriteLine("Der er slået " + diceNum + " på " + i + " forsøg");
+        //        if (diceNum == 6)
+        //        {
+        //            return diceNum;
+        //        }
+                
+                
+        //    }
+        //    Console.WriteLine("Du har ikke flere forsøg tilbage");
+        //    return 0;
         //}
 
     }
