@@ -6,7 +6,6 @@ namespace ThomasLudoGame
 {
     class Game
     {
-        private int counter;
         private bool hasPlayerPieceOnBoard = false;
         private int player1Start = 0;
         private int player2Start = 0;
@@ -137,22 +136,24 @@ namespace ThomasLudoGame
             int counterPlayer2 = 0;
             foreach (Piece piece in Player1.Pieces)
             {
-                if (piece.IsAtHome)
+                if (piece.IsAtGoal)
                 {
                     counterPlayer1++;
                     if (counterPlayer1 == 4)
                     {
+                        Console.WriteLine(Player1.GetName() + " har vundet");
                         return true;
                     }
                 }
             }
             foreach (Piece piece1 in Player2.Pieces)
             {
-                if (piece1.IsAtHome)
+                if (piece1.IsAtGoal)
                 {
                     counterPlayer2++;
                     if (counterPlayer2 == 4)
                     {
+                        Console.WriteLine(Player2.GetName() + " har vundet");
                         return true;
                     }
                 }
@@ -170,19 +171,19 @@ namespace ThomasLudoGame
             foreach (Piece piece in Player1.Pieces)
             {
 
-                if (pieceNum == piece.PieceNumber && piece.IsAtHome == false)
+                if (pieceNum == piece.PieceNumber && piece.IsAtGoal == false)
                 {
                     int newPos = piece.pos + diceNum;
                     piece.pos = newPos;
                     Console.WriteLine("Brik nr " + piece.PieceNumber + " er rykket frem til felt " + newPos);
                     Console.WriteLine("------------------------------------------------------------------------");
-                    if (piece.pos > 10)
+                    if (piece.pos >= 57)
                     {
                         Console.WriteLine("Brik nr " + piece.PieceNumber + " er kommet hjem ");
-                        piece.IsAtHome = true;
+                        piece.IsAtGoal = true;
                     }
                 }
-                else if (pieceNum == piece.PieceNumber && piece.IsAtHome == true)
+                else if (pieceNum == piece.PieceNumber && piece.IsAtGoal == true)
                 {
                     if (GameFinished())
                     {
@@ -207,20 +208,20 @@ namespace ThomasLudoGame
             foreach (Piece piece in Player2.Pieces)
             {
 
-                if (pieceNum == piece.PieceNumber && piece.IsAtHome == false)
+                if (pieceNum == piece.PieceNumber && piece.IsAtGoal == false)
                 {
 
                     int newPos = piece.pos + diceNum;
                     piece.pos = newPos;
                     Console.WriteLine("Brik nr " + piece.PieceNumber + " er rykket frem til felt " + newPos);
                     Console.WriteLine("------------------------------------------------------------------------");
-                    if (piece.pos > 10)
+                    if (piece.pos >= 57)
                     {
                         Console.WriteLine("Brik nr " + piece.PieceNumber + " er kommet hjem ");
-                        piece.IsAtHome = true;
+                        piece.IsAtGoal = true;
                     }
                 }
-                else if(pieceNum == piece.PieceNumber && piece.IsAtHome == true)
+                else if(pieceNum == piece.PieceNumber && piece.IsAtGoal == true)
                 {
                     if (GameFinished())
                     {
