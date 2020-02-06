@@ -133,9 +133,29 @@ namespace ThomasLudoGame
         }
         public bool GameFinished()
         {
-            if(Player1.Pieces.Count == 0 || Player2.Pieces.Count == 0)
+            int counterPlayer1 = 0;
+            int counterPlayer2 = 0;
+            foreach (Piece piece in Player1.Pieces)
             {
-                return true;
+                if (piece.IsAtHome)
+                {
+                    counterPlayer1++;
+                    if (counter == 4)
+                    {
+                        return true;
+                    }
+                }
+            }
+            foreach (Piece piece1 in Player2.Pieces)
+            {
+                if (piece1.IsAtHome)
+                {
+                    counterPlayer2++;
+                    if (counter == 4)
+                    {
+                        return true;
+                    }
+                }
             }
             return false;
         }
@@ -150,7 +170,7 @@ namespace ThomasLudoGame
             foreach (Piece piece in Player1.Pieces)
             {
 
-                if (pieceNum == piece.PieceNumber)
+                if (pieceNum == piece.PieceNumber && piece.IsAtHome == false)
                 {
                     int newPos = piece.pos + diceNum;
                     piece.pos = newPos;
@@ -159,8 +179,12 @@ namespace ThomasLudoGame
                     if (piece.pos > 57)
                     {
                         Console.WriteLine("Brik nr " + piece.PieceNumber + " er kommet hjem ");
-                        Player1.Pieces.RemoveAt(piece.PieceNumber);
+                        piece.IsAtHome = true;
                     }
+                }
+                else if (pieceNum == piece.PieceNumber && piece.IsAtHome == true)
+                {
+                    WriteToPlayer(pieceNum);
                 }
                 
             }
@@ -178,7 +202,7 @@ namespace ThomasLudoGame
             foreach (Piece piece in Player2.Pieces)
             {
 
-                if (pieceNum == piece.PieceNumber)
+                if (pieceNum == piece.PieceNumber && piece.IsAtHome == false)
                 {
 
                     int newPos = piece.pos + diceNum;
@@ -188,9 +212,14 @@ namespace ThomasLudoGame
                     if (piece.pos > 57)
                     {
                         Console.WriteLine("Brik nr " + piece.PieceNumber + " er kommet hjem ");
-                        Player2.Pieces.RemoveAt(piece.PieceNumber);
+                        piece.IsAtHome = true;
                     }
                 }
+                else if(pieceNum == piece.PieceNumber && piece.IsAtHome == true)
+                {
+                    WriteToPlayer(pieceNum);
+                }
+                
                 
             }
 
@@ -232,6 +261,10 @@ namespace ThomasLudoGame
             }
             Player2.HasPlayerOnePieceOnBoard = true;
             
+        }
+        public void WriteToPlayer(int pieceNumber)
+        {
+            Console.WriteLine("Brik nr: " + pieceNumber + " er kommet hjem, så den kan ikke rykkes med!!");
         }
         //public int ThrowThreeSixes()
         //{

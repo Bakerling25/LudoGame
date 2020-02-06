@@ -17,8 +17,8 @@ namespace ThomasLudoGame
                     pieces.Add(new Piece()
                     {
                         color = pieceColor,
-                        PieceNumber = pieceNum
-                        
+                        PieceNumber = pieceNum,
+                        IsAtHome = false
                     });
                 }
                 
