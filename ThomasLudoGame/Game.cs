@@ -7,7 +7,7 @@ namespace ThomasLudoGame
     class Game
     {
         private int counter;
-        private bool hasPlayerOnePieceOnBoard = false;
+        private bool hasPlayerPieceOnBoard = false;
         private int player1Start = 0;
         private int player2Start = 0;
         //private bool hasPlayer1ThrownThreeSixes = false;
@@ -25,25 +25,25 @@ namespace ThomasLudoGame
         public Game(string player1Name,string player2Name)
         {
             
-            Player1 = new Player(player1Name,Player1Pieces(),hasPlayerOnePieceOnBoard);
-            Player2 = new Player(player2Name,Player2Pieces(),hasPlayerOnePieceOnBoard);
+            Player1 = new Player(player1Name,Player1Pieces(),hasPlayerPieceOnBoard);
+            Player2 = new Player(player2Name,Player2Pieces(),hasPlayerPieceOnBoard);
             
         }
         public Game(string player1Name, string player2Name,string player3Name)
         {
             
-            Player1 = new Player(player1Name, Player1Pieces(),hasPlayerOnePieceOnBoard);
-            Player2 = new Player(player2Name, Player2Pieces(),hasPlayerOnePieceOnBoard);
-            Player3 = new Player(player3Name, Player3Pieces(),hasPlayerOnePieceOnBoard);
+            Player1 = new Player(player1Name, Player1Pieces(),hasPlayerPieceOnBoard);
+            Player2 = new Player(player2Name, Player2Pieces(),hasPlayerPieceOnBoard);
+            Player3 = new Player(player3Name, Player3Pieces(),hasPlayerPieceOnBoard);
             
         }
         public Game(string player1Name, string player2Name, string player3Name, string player4Name)
         {
 
-            Player1 = new Player(player1Name, Player1Pieces(),hasPlayerOnePieceOnBoard);
-            Player2 = new Player(player2Name, Player2Pieces(),hasPlayerOnePieceOnBoard);
-            Player3 = new Player(player3Name, Player3Pieces(),hasPlayerOnePieceOnBoard);
-            Player4 = new Player(player4Name, Player4Pieces(),hasPlayerOnePieceOnBoard);
+            Player1 = new Player(player1Name, Player1Pieces(),hasPlayerPieceOnBoard);
+            Player2 = new Player(player2Name, Player2Pieces(),hasPlayerPieceOnBoard);
+            Player3 = new Player(player3Name, Player3Pieces(),hasPlayerPieceOnBoard);
+            Player4 = new Player(player4Name, Player4Pieces(),hasPlayerPieceOnBoard);
             
         }
         public List<Piece> Player1Pieces()
@@ -140,7 +140,7 @@ namespace ThomasLudoGame
                 if (piece.IsAtHome)
                 {
                     counterPlayer1++;
-                    if (counter == 4)
+                    if (counterPlayer1 == 4)
                     {
                         return true;
                     }
@@ -151,7 +151,7 @@ namespace ThomasLudoGame
                 if (piece1.IsAtHome)
                 {
                     counterPlayer2++;
-                    if (counter == 4)
+                    if (counterPlayer2 == 4)
                     {
                         return true;
                     }
@@ -176,7 +176,7 @@ namespace ThomasLudoGame
                     piece.pos = newPos;
                     Console.WriteLine("Brik nr " + piece.PieceNumber + " er rykket frem til felt " + newPos);
                     Console.WriteLine("------------------------------------------------------------------------");
-                    if (piece.pos > 57)
+                    if (piece.pos > 10)
                     {
                         Console.WriteLine("Brik nr " + piece.PieceNumber + " er kommet hjem ");
                         piece.IsAtHome = true;
@@ -184,7 +184,12 @@ namespace ThomasLudoGame
                 }
                 else if (pieceNum == piece.PieceNumber && piece.IsAtHome == true)
                 {
+                    if (GameFinished())
+                    {
+                        break;
+                    }
                     WriteToPlayer(pieceNum);
+                    Player1Turn();
                 }
                 
             }
@@ -209,7 +214,7 @@ namespace ThomasLudoGame
                     piece.pos = newPos;
                     Console.WriteLine("Brik nr " + piece.PieceNumber + " er rykket frem til felt " + newPos);
                     Console.WriteLine("------------------------------------------------------------------------");
-                    if (piece.pos > 57)
+                    if (piece.pos > 10)
                     {
                         Console.WriteLine("Brik nr " + piece.PieceNumber + " er kommet hjem ");
                         piece.IsAtHome = true;
@@ -217,7 +222,12 @@ namespace ThomasLudoGame
                 }
                 else if(pieceNum == piece.PieceNumber && piece.IsAtHome == true)
                 {
+                    if (GameFinished())
+                    {
+                        break;
+                    }
                     WriteToPlayer(pieceNum);
+                    Player2Turn();
                 }
                 
                 
