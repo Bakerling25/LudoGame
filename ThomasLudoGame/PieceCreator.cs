@@ -18,7 +18,8 @@ namespace ThomasLudoGame
                     {
                         color = pieceColor,
                         PieceNumber = pieceNum,
-                        IsAtHome = false
+                        IsAtGoal = false,
+                        pos = 0
                     });
                 }
                 

@@ -277,6 +277,17 @@ namespace ThomasLudoGame
         {
             Console.WriteLine("Brik nr: " + pieceNumber + " er kommet hjem, så den kan ikke rykkes med!!");
         }
+        public bool IsitHome(Player player, int pieceNum)
+        {
+            foreach (Piece piece in player.Pieces)
+            {
+                if (piece.pos == 0 && piece.PieceNumber == pieceNum)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         //public int ThrowThreeSixes()
         //{
         //    int diceNum;

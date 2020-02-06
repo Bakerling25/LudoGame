@@ -9,6 +9,6 @@ namespace ThomasLudoGame
         public PieceColor color { get; set; }
         public int PieceNumber{ get; set; }
         public int pos { get; set; }
-        public bool IsAtHome { get; set; }
+        public bool IsAtGoal { get; set; }
     }
 }
