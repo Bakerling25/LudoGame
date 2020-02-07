@@ -9,9 +9,7 @@ namespace ThomasLudoGame
         private bool hasPlayerPieceOnBoard = false;
         private int player1Start = 0;
         private int player2Start = 0;
-        //private bool hasPlayer1ThrownThreeSixes = false;
-        //private bool hasPlayer2ThrownThreeSixes = false;
-        private List<Piece> playerPiecesAll = PieceCreator.CreatePiece();
+        private List<Piece> playerPiecesAll = PieceCreator.CreatePiece();//Mine brikker bliver lagt listen 
         private List<Piece> player1Pieces = new List<Piece>();
         private List<Piece> player2Pieces = new List<Piece>();
         private List<Piece> player3Pieces = new List<Piece>();
@@ -21,9 +19,11 @@ namespace ThomasLudoGame
         private Player Player3;
         private Player Player4;
 
-        public Game(string player1Name,string player2Name)
+        public Game(string player1Name,string player2Name)// Denne constructor bliver invoked af to string navne argumenter 
         {
-            
+            ///
+            ///Her bliver player objektet instantieret med navn, brikker og falsk til at have nogle brikker på brættet 
+            ///
             Player1 = new Player(player1Name,Player1Pieces(),hasPlayerPieceOnBoard);
             Player2 = new Player(player2Name,Player2Pieces(),hasPlayerPieceOnBoard);
             
@@ -45,7 +45,7 @@ namespace ThomasLudoGame
             Player4 = new Player(player4Name, Player4Pieces(),hasPlayerPieceOnBoard);
             
         }
-        public List<Piece> Player1Pieces()
+        public List<Piece> Player1Pieces() // Uddeller de første fire brikker i playerPiecesAll til player1
         {
             
             for (int i = 0; i < 4; i++)
@@ -88,23 +88,23 @@ namespace ThomasLudoGame
             {
                 Dice dice = new Dice();
                 
-                if (i == 1)
+                if (i == 1)// hvir det er player 1 tur 
                 {
-                    if (Player1.HasPlayerOnePieceOnBoard == false)
+                    if (Player1.HasPlayerOnePieceOnBoard == false)// ikke har nogen brikker på brættet 
                     {
-                        for (int k = 1; k < 4; k++)
+                        for (int k = 1; k < 4; k++)// de tre forsøg man har til at slå en sekser for at komme ud
                         {
                             player1Start = dice.ThrowDice();
                             Console.WriteLine(Player1.GetName() + " har slået " + player1Start + " i " + k + " forsøg");
-                            if (player1Start == 6)
+                            if (player1Start == 6)// hvis en sekser er slået
                             {
-                                IsPlayer1AllowedToMove();
+                                IsPlayer1AllowedToMove();// for spileren lov til at rykke
                             }
                         }
                     }
                     else
                     {
-                        Player1Turn();
+                        Player1Turn();// lige så snart at player har en brik på brættet køres denne metode
                     }
                 }
                 else
@@ -130,16 +130,16 @@ namespace ThomasLudoGame
             
            
         }
-        public bool GameFinished()
+        public bool GameFinished()// returns true hvis spilet er slut ellers false
         {
             int counterPlayer1 = 0;
             int counterPlayer2 = 0;
             foreach (Piece piece in Player1.Pieces)
             {
-                if (piece.IsAtGoal)
+                if (piece.IsAtGoal)// chekker om brikken er mål
                 {
                     counterPlayer1++;
-                    if (counterPlayer1 == 4)
+                    if (counterPlayer1 == 4)// hvis alle 4 brikker er i mål returner true
                     {
                         Console.WriteLine(Player1.GetName() + " har vundet");
                         return true;
@@ -158,9 +158,9 @@ namespace ThomasLudoGame
                     }
                 }
             }
-            return false;
+            return false; 
         }
-        public void Player1Turn() 
+        public void Player1Turn() // sørger for at player1 kan rykke sin brik
         {
             Dice dice = new Dice();
             int diceNum = dice.ThrowDice();
@@ -171,26 +171,26 @@ namespace ThomasLudoGame
             foreach (Piece piece in Player1.Pieces)
             {
 
-                if (pieceNum == piece.PieceNumber && piece.IsAtGoal == false)
+                if (pieceNum == piece.PieceNumber && piece.IsAtGoal == false)// tjekker om brikken er i mål
                 {
-                    int newPos = piece.pos + diceNum;
+                    int newPos = piece.pos + diceNum;// ligger det terningen har rullet til den nuværende position
                     piece.pos = newPos;
                     Console.WriteLine("Brik nr " + piece.PieceNumber + " er rykket frem til felt " + newPos);
                     Console.WriteLine("------------------------------------------------------------------------");
-                    if (piece.pos >= 57)
+                    if (piece.pos >= 57)// hvis brikken er i mål 
                     {
                         Console.WriteLine("Brik nr " + piece.PieceNumber + " er kommet hjem ");
                         piece.IsAtGoal = true;
                     }
                 }
-                else if (pieceNum == piece.PieceNumber && piece.IsAtGoal == true)
+                else if (pieceNum == piece.PieceNumber && piece.IsAtGoal == true)// hvis brikken er i mål 
                 {
-                    if (GameFinished())
+                    if (GameFinished())// tjekker igen
                     {
                         break;
                     }
-                    WriteToPlayer(pieceNum);
-                    Player1Turn();
+                    WriteToPlayer(pieceNum);// fortæller hvilken brik som ikke må rykkes med
+                    Player1Turn();// kør igen
                 }
                 
             }
@@ -235,7 +235,7 @@ namespace ThomasLudoGame
             }
 
         }
-        public void IsPlayer1AllowedToMove()
+        public void IsPlayer1AllowedToMove()// Tjekker om spilleren har har en brik på brættet 
         {
             int counter = 0;
             foreach (Piece piece in Player1.Pieces)
@@ -277,7 +277,7 @@ namespace ThomasLudoGame
         {
             Console.WriteLine("Brik nr: " + pieceNumber + " er kommet hjem, så den kan ikke rykkes med!!");
         }
-        public bool IsitHome(Player player, int pieceNum)
+        public bool IsitHome(Player player, int pieceNum)// tjekker om brikker er ude
         {
             foreach (Piece piece in player.Pieces)
             {
@@ -288,24 +288,7 @@ namespace ThomasLudoGame
             }
             return false;
         }
-        //public int ThrowThreeSixes()
-        //{
-        //    int diceNum;
-        //    Dice dice = new Dice();
-        //    for (int i = 0; i < 3; i++)
-        //    {
-        //        diceNum = dice.ThrowDice();
-        //        Console.WriteLine("Der er slået " + diceNum + " på " + i + " forsøg");
-        //        if (diceNum == 6)
-        //        {
-        //            return diceNum;
-        //        }
-                
-                
-        //    }
-        //    Console.WriteLine("Du har ikke flere forsøg tilbage");
-        //    return 0;
-        //}
+        
 
     }
 }

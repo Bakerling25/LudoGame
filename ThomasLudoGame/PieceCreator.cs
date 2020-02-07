@@ -7,7 +7,7 @@ namespace ThomasLudoGame
     class PieceCreator
     {
         
-        public static List<Piece> CreatePiece()
+        public static List<Piece> CreatePiece()// Laver brikkerne og returnere alle 16 brikker.
         {
             List<Piece> pieces = new List<Piece>();
             foreach (PieceColor pieceColor in Enum.GetValues(typeof(PieceColor)))

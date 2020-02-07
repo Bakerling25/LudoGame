@@ -7,7 +7,7 @@ namespace ThomasLudoGame
     class Dice
     {
         private static int diceNum;
-        public int ThrowDice()
+        public int ThrowDice()// returne værdien for terningekastet
         {
             Random random = new Random();
             diceNum = random.Next(1, 7);

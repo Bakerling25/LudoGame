@@ -13,11 +13,14 @@ namespace ThomasLudoGame
                 Console.WriteLine("Skriv navnene på spillerne");
                 string player1 = Console.ReadLine();
                 string player2 = Console.ReadLine();
-                Game game = new Game(player1, player2);
+                Game game = new Game(player1, player2);// her bliver game klassen instantieret med de 2 navne
                 while (game.GameFinished() == false)
                 {
-                    game.Play(numberOfPlayers);
+                    game.Play(numberOfPlayers);//spille medtoden bliver kaldt
                 }
+                ///
+                /// Alt herunder er dublikeret kode med et ekstra string variable, men gør det samme som ovenover.
+                ///
             }
             else if (numberOfPlayers == 3)
             {
